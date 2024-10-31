@@ -19,7 +19,9 @@ const routes: Routes = [
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path:'subjects',component:SubjectsComponent},
   {path:'topics',component:TopicsComponent},
-  {path:'notes',component:NotesComponent}
+  {path:'notes',component:NotesComponent},
+  { path: 'notes/:subject', component: NotesComponent },
+  { path: '', redirectTo: '/notes/subject1', pathMatch: 'full' }
 ];
 
 @NgModule({

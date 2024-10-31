@@ -1,11 +1,27 @@
-
+<!-- 
 <h1>hi</h1>
 <div *ngFor="let item of questionsAndAnswers">
   <h3>Q: {{ item.question }}</h3>
   <p>A: {{ item.answer }}</p>
 </div>
-  
+   -->
+   <div *ngIf="subject">
+    <h2>Notes for {{ subject }}</h2>
+    <ul>
+      <li *ngFor="let note of notes">
+        <strong>{{ note.answer }}</strong><br>
+        {{ note.question }}
+      </li>
+    </ul>
+  </div>
 
+  <nav>
+    <a routerLink="/notes/subject1" routerLinkActive="active">Subject 1</a> |
+    <a routerLink="/notes/subject2" routerLinkActive="active">Subject 2</a> |
+    <a routerLink="/notes/subject3" routerLinkActive="active">Subject 3</a> |
+    <!-- Repeat for other subjects as needed -->
+  </nav>
+  
 
 
   <!-- Firebase App (required) -->
