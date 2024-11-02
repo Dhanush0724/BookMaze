@@ -17,9 +17,10 @@ import { VerifyEmailComponent } from './component/verify-email/verify-email.comp
 import { SubjectsComponent } from './component/subjects/subjects.component';
 import { TopicsComponent } from './component/topics/topics.component';
 import { NotesComponent } from './component/notes/notes.component';
-import { RouterModule } from '@angular/router';
+
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { FormsModule } from '@angular/forms';
+import { NoteService } from './note.service';  // Correct path based on your structure
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { FormsModule } from '@angular/forms';
     VerifyEmailComponent,
     SubjectsComponent,
     TopicsComponent,
-    NotesComponent
+    NotesComponent,
+  
     
 
   ],
@@ -46,7 +48,8 @@ import { FormsModule } from '@angular/forms';
     
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    NoteService
   ],
   bootstrap: [AppComponent]
 })

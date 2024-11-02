@@ -1,31 +1,63 @@
-<!-- 
-<h1>hi</h1>
-<div *ngFor="let item of questionsAndAnswers">
-  <h3>Q: {{ item.question }}</h3>
-  <p>A: {{ item.answer }}</p>
+<h2>Notes for {{ subject }}</h2>
+<div *ngIf="notes && notes.length > 0; else noNotes">
+  <ul>
+    <li *ngFor="let item of notes">
+      <p><strong>Q:</strong> {{ item.question || "No question available" }}</p>
+      <p><strong>A:</strong> {{ item.answer || "No answer available" }}</p>
+    </li>
+  </ul>
 </div>
-   -->
-   <div *ngIf="subject">
-    <h2>Notes for {{ subject }}</h2>
-    <ul>
-      <li *ngFor="let note of notes">
-        <strong>{{ note.answer }}</strong><br>
-        {{ note.question }}
-      </li>
-    </ul>
-  </div>
 
-  <nav>
-    <a routerLink="/notes/subject1" routerLinkActive="active">Subject 1</a> |
-    <a routerLink="/notes/subject2" routerLinkActive="active">Subject 2</a> |
-    <a routerLink="/notes/subject3" routerLinkActive="active">Subject 3</a> |
-    <!-- Repeat for other subjects as needed -->
-  </nav>
-  
+<ng-template #noNotes>
+  <p>No notes available for this exercise.</p>
+</ng-template>
+
+<nav>
+  <a [routerLink]="['/notes', 'Maths']" routerLinkActive="active">Maths</a> |
+  <a [routerLink]="['/notes', 'Science']" routerLinkActive="active">Science</a> |
+  <a [routerLink]="['/notes', 'History']" routerLinkActive="active">History</a>
+</nav>
+
+<!-- Chapters Navigation -->
+<div>
+  <h3>Chapters</h3>
+  <a [routerLink]="['/notes', subject, 'chapter_1']" routerLinkActive="active">Chapter 1</a> |
+  <a [routerLink]="['/notes', subject, 'chapter_2']" routerLinkActive="active">Chapter 2</a> |
+  <a [routerLink]="['/notes', subject, 'chapter_3']" routerLinkActive="active">Chapter 3</a>
+</div>
 
 
-  <!-- Firebase App (required) -->
-<script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
 
-<!-- Firebase Realtime Database (required for database) -->
-<script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-database.js"></script>
+
+<div *ngIf="chapterSelected">
+  <h3>Exercises for {{ chapter }}</h3>
+  <a [routerLink]="['/notes', subject, chapter, 'exercise_1_1']" routerLinkActive="active">Exercise 1.1</a> |
+  <a [routerLink]="['/notes', subject, chapter, 'exercise_1_2']" routerLinkActive="active">Exercise 1.2</a> |
+  <a [routerLink]="['/notes', subject, chapter, 'exercise_1_3']" routerLinkActive="active">Exercise 1.3</a>
+</div>
+
+
+
+
+<h5>fine finf eienfinfr</h5>
+<div *ngIf="chapterSelected">
+  <h2>Exercises for {{ subject }} - {{ chapter }}</h2>
+  <!-- Display list of exercises -->
+  <a [routerLink]="['/notes', subject, chapter, 'exercise_1_1']">Exercise 1.1</a> |
+  <a [routerLink]="['/notes', subject, chapter, 'exercise_1_2']">Exercise 1.2</a> |
+  <a [routerLink]="['/notes', subject, chapter, 'exercise_1_3']">Exercise 1.3</a>
+</div>
+
+<div *ngIf="notes && notes.length > 0; else noNotes">
+  <h2>Notes for {{ subject }} - {{ chapter }} - {{ exercise }}</h2>
+  <ul>
+    <li *ngFor="let item of notes">
+      <p><strong>Q:</strong> {{ item.question }}</p>
+      <p><strong>A:</strong> {{ item.answer }}</p>
+    </li>
+  </ul>
+</div>
+
+<ng-template #noNotes>
+  <p>No notes available for this exercise.</p>
+</ng-template>
